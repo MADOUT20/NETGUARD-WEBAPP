@@ -104,7 +104,7 @@ export default function Navbar({ onOpenAuthModal, onScrollToSection }) {
             </button>
 
             <button
-              onClick={() => handleNavClick('downloads')}
+              onClick={() => window.open('https://github.com/MADOUT20/NETGUARD-WEBAPP', '_blank')}
               className="inline-flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-brand-600 via-brand-600 to-indigoAcc-600 hover:from-brand-700 hover:to-indigoAcc-700 shadow-glow-cobalt btn-shimmer transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98]"
             >
               <Download className="w-3.5 h-3.5 stroke-[2.5]" />
@@ -157,7 +157,7 @@ export default function Navbar({ onOpenAuthModal, onScrollToSection }) {
             </button>
             <button
               onClick={() => {
-                handleNavClick('downloads');
+                window.open('https://github.com/MADOUT20/NETGUARD-WEBAPP', '_blank');
                 setMobileMenuOpen(false);
               }}
               className="w-full flex items-center justify-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-bold text-white bg-brand-600 hover:bg-brand-700 btn-shimmer shadow-glow-cobalt transition-all active:scale-[0.98]"

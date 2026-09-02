@@ -64,22 +64,21 @@ export default function DownloadPortal({ onOpenAuthModal }) {
   const activeDownload = downloads.find((d) => d.id === selectedOS);
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      id="downloads" 
+      id="downloads"
       className="py-24 bg-slate-900 text-white relative overflow-hidden z-10"
     >
-      
+
       {/* Background Radial Glow */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-brand-600/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Section Header */}
-        <div className={`text-center max-w-3xl mx-auto space-y-4 transition-all duration-700 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}>
+        <div className={`text-center max-w-3xl mx-auto space-y-4 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
           <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-brand-900/60 border border-brand-700 text-brand-300 font-mono text-xs font-bold">
             <Server className="w-3.5 h-3.5" />
             <span>DEPLOYMENT & DOWNLOAD PORTAL</span>
@@ -104,11 +103,10 @@ export default function DownloadPortal({ onOpenAuthModal }) {
                 <button
                   key={d.id}
                   onClick={() => setSelectedOS(d.id)}
-                  className={`px-5 py-2.5 rounded-xl text-xs font-bold font-sans flex items-center space-x-2 transition-all duration-300 active:scale-[0.98] ${
-                    isSelected
+                  className={`px-5 py-2.5 rounded-xl text-xs font-bold font-sans flex items-center space-x-2 transition-all duration-300 active:scale-[0.98] ${isSelected
                       ? 'bg-gradient-to-r from-brand-600 to-indigoAcc-600 text-white shadow-glow-cobalt'
                       : 'text-slate-400 hover:text-white hover:bg-slate-700/50'
-                  }`}
+                    }`}
                 >
                   <IconComp className="w-4 h-4" />
                   <span>{d.name.split(' ')[0]}</span>
@@ -121,7 +119,7 @@ export default function DownloadPortal({ onOpenAuthModal }) {
         {/* Enterprise Style Download Showcase Card */}
         <div className="mt-8 bg-slate-950 rounded-3xl p-6 sm:p-10 border border-slate-800/90 shadow-2xl transition-all duration-300">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
+
             {/* Left Specs Column */}
             <div className="lg:col-span-7 space-y-6">
               <div>
@@ -132,7 +130,7 @@ export default function DownloadPortal({ onOpenAuthModal }) {
                   </span>
                   <span className="text-xs font-mono text-slate-500">{activeDownload.version}</span>
                 </div>
-                
+
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
                   {activeDownload.name}
                 </h3>
@@ -197,7 +195,7 @@ export default function DownloadPortal({ onOpenAuthModal }) {
                     <Terminal className="w-4 h-4 text-brand-400" />
                     <span>ONE-LINE AUTOMATED SETUP</span>
                   </span>
-                  
+
                   <button
                     onClick={handleCopyScript}
                     className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] flex items-center space-x-1.5 border border-slate-700 transition-all active:scale-[0.98]"

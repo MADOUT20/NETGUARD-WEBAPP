@@ -17,7 +17,7 @@ export default function Hero({ onScrollToSection, onOpenAuthModal }) {
   const handleDownloadOS = (os) => {
     setSelectedOS(os.label);
     setOsMenuOpen(false);
-    onScrollToSection('downloads');
+    window.open('https://github.com/MADOUT20/NETGUARD-WEBAPP', '_blank');
   };
 
   return (
@@ -79,7 +79,7 @@ export default function Hero({ onScrollToSection, onOpenAuthModal }) {
               <div className="relative">
                 <div className="inline-flex rounded-xl shadow-glow-cobalt overflow-hidden active:scale-[0.98] transition-transform">
                   <button
-                    onClick={() => onScrollToSection('downloads')}
+                    onClick={() => window.open('https://github.com/MADOUT20/NETGUARD-WEBAPP', '_blank')}
                     className="px-5 py-3.5 bg-gradient-to-r from-brand-600 via-brand-600 to-indigoAcc-600 hover:from-brand-700 hover:to-indigoAcc-700 text-white text-sm font-bold flex items-center space-x-2 btn-shimmer transition-all"
                   >
                     <Download className="w-4 h-4 stroke-[2.5]" />
