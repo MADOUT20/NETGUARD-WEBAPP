@@ -369,7 +369,7 @@ export default function DeliverablesHub() {
 
               <div className="pt-4 border-t border-slate-200 flex justify-end">
                 <button
-                  onClick={() => window.open('https://github.com/MADOUT20/NETGUARD-WEBAPP', '_blank')}
+                  onClick={() => window.open('https://github.com/MADOUT20/SIH-2026', '_blank')}
                   className="px-5 py-2.5 rounded-xl bg-brand-600 text-white font-bold text-xs flex items-center space-x-2 hover:bg-brand-700 btn-shimmer shadow-glow-cobalt transition-all active:scale-[0.98]"
                 >
                   <Download className="w-4 h-4" />

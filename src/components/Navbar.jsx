@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Shield, Download, Lock, ChevronRight, Terminal, Menu, X, Sparkles } from 'lucide-react';
 
-export default function Navbar({ onOpenAuthModal, onScrollToSection }) {
+export default function Navbar({ onOpenAuthModal, onScrollToSection, currentPage = 'home', onNavigateToPage }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
@@ -12,6 +12,7 @@ export default function Navbar({ onOpenAuthModal, onScrollToSection }) {
     { label: 'Live Sandbox', id: 'sandbox' },
     { label: 'Downloads', id: 'downloads' },
     { label: 'Benchmarks', id: 'benchmarks' },
+    { label: 'NetGuard CLI', id: 'cli-hero', isPage: true },
   ];
 
   useEffect(() => {
@@ -35,9 +36,34 @@ export default function Navbar({ onOpenAuthModal, onScrollToSection }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = (id) => {
-    setActiveSection(id);
-    onScrollToSection(id);
+  const handleNavClick = (item) => {
+    if (typeof item === 'string') {
+      const found = navItems.find(i => i.id === item);
+      if (found && found.isPage) {
+        onNavigateToPage(found.id);
+        return;
+      }
+      if (currentPage !== 'home' && onNavigateToPage) {
+        onNavigateToPage('home');
+        setTimeout(() => onScrollToSection(item), 100);
+      } else {
+        setActiveSection(item);
+        onScrollToSection(item);
+      }
+      return;
+    }
+
+    if (item.isPage) {
+      if (onNavigateToPage) onNavigateToPage(item.id);
+    } else {
+      if (currentPage !== 'home' && onNavigateToPage) {
+        onNavigateToPage('home');
+        setTimeout(() => onScrollToSection(item.id), 100);
+      } else {
+        setActiveSection(item.id);
+        onScrollToSection(item.id);
+      }
+    }
   };
 
   return (
@@ -73,11 +99,11 @@ export default function Navbar({ onOpenAuthModal, onScrollToSection }) {
           {/* Desktop Navigation Links with Sliding Active Capsule */}
           <nav className="hidden md:flex items-center space-x-1 bg-slate-100/80 p-1.5 rounded-full border border-slate-200/70 backdrop-blur-sm relative">
             {navItems.map((item) => {
-              const isActive = activeSection === item.id;
+              const isActive = item.isPage ? currentPage === item.id : (currentPage === 'home' && activeSection === item.id);
               return (
                 <button
                   key={item.id}
-                  onClick={() => handleNavClick(item.id)}
+                  onClick={() => handleNavClick(item)}
                   className={`px-4 py-1.5 text-xs lg:text-sm font-semibold rounded-full transition-all duration-300 relative z-10 ${
                     isActive
                       ? 'text-brand-700 font-bold'
@@ -104,7 +130,7 @@ export default function Navbar({ onOpenAuthModal, onScrollToSection }) {
             </button>
 
             <button
-              onClick={() => window.open('https://github.com/MADOUT20/NETGUARD-WEBAPP', '_blank')}
+              onClick={() => window.open('https://github.com/MADOUT20/SIH-2026', '_blank')}
               className="inline-flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-brand-600 via-brand-600 to-indigoAcc-600 hover:from-brand-700 hover:to-indigoAcc-700 shadow-glow-cobalt btn-shimmer transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98]"
             >
               <Download className="w-3.5 h-3.5 stroke-[2.5]" />
@@ -133,11 +159,13 @@ export default function Navbar({ onOpenAuthModal, onScrollToSection }) {
               <button
                 key={item.id}
                 onClick={() => {
-                  handleNavClick(item.id);
+                  handleNavClick(item);
                   setMobileMenuOpen(false);
                 }}
                 className={`text-left px-3.5 py-2.5 text-sm font-semibold rounded-xl transition-all ${
-                  activeSection === item.id ? 'bg-brand-50 text-brand-700 font-bold' : 'text-slate-700 hover:bg-slate-50'
+                  (item.isPage ? currentPage === item.id : (currentPage === 'home' && activeSection === item.id))
+                    ? 'bg-brand-50 text-brand-700 font-bold' 
+                    : 'text-slate-700 hover:bg-slate-50'
                 }`}
               >
                 {item.label}
@@ -157,7 +185,7 @@ export default function Navbar({ onOpenAuthModal, onScrollToSection }) {
             </button>
             <button
               onClick={() => {
-                window.open('https://github.com/MADOUT20/NETGUARD-WEBAPP', '_blank');
+                window.open('https://github.com/MADOUT20/SIH-2026', '_blank');
                 setMobileMenuOpen(false);
               }}
               className="w-full flex items-center justify-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-bold text-white bg-brand-600 hover:bg-brand-700 btn-shimmer shadow-glow-cobalt transition-all active:scale-[0.98]"

@@ -56,7 +56,7 @@ export default function DownloadPortal({ onOpenAuthModal }) {
   };
 
   const handleTriggerDownload = (item) => {
-    window.open('https://github.com/MADOUT20/NETGUARD-WEBAPP', '_blank');
+    window.open('https://github.com/MADOUT20/SIH-2026', '_blank');
     setDownloadSuccess(item.name);
     setTimeout(() => setDownloadSuccess(null), 4000);
   };

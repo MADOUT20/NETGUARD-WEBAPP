@@ -8,9 +8,12 @@ import DeliverablesHub from './components/DeliverablesHub';
 import AuthModal from './components/AuthModal';
 import Footer from './components/Footer';
 import GDGMouseCanvas from './components/GDGMouseCanvas';
+import CliHeroPage from './components/CliHeroPage';
+import CliDocsPage from './components/CliDocsPage';
 
 export default function App() {
   const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState('home'); // 'home' | 'cli-hero' | 'cli-docs'
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -18,6 +21,29 @@ export default function App() {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
+
+  const handleNavigatePage = (pageId) => {
+    setCurrentPage(pageId);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  if (currentPage === 'cli-hero') {
+    return (
+      <CliHeroPage
+        onNavigateToDocs={() => handleNavigatePage('cli-docs')}
+        onNavigateHome={() => handleNavigatePage('home')}
+      />
+    );
+  }
+
+  if (currentPage === 'cli-docs') {
+    return (
+      <CliDocsPage
+        onNavigateToHero={() => handleNavigatePage('cli-hero')}
+        onNavigateHome={() => handleNavigatePage('home')}
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#ffffff] text-slate-900 font-sans selection:bg-brand-500 selection:text-white relative overflow-x-hidden">
@@ -35,6 +61,8 @@ export default function App() {
 
       {/* Sticky Blurred Navbar */}
       <Navbar
+        currentPage={currentPage}
+        onNavigateToPage={handleNavigatePage}
         onOpenAuthModal={() => setAuthModalOpen(true)}
         onScrollToSection={scrollToSection}
       />
