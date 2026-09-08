@@ -8,7 +8,7 @@ export default function CliDocsPage({ onNavigateToHero, onNavigateHome }) {
   const commands = {
     macLinux: 'curl -fsSL https://netguard.ntro.gov.in/install.sh | bash',
     powershell: 'iwr -useb https://raw.githubusercontent.com/MADOUT20/SIH-2026/main/NetGuard-Offline-CLI/install.ps1 | iex',
-    cmd: 'curl -fsSL https://netguard.ntro.gov.in/install.cmd -o install.cmd && install.cmd',
+    cmd: '.\\venv\\Scripts\\python.exe -m main --file "Your_path_file"',
     uninstall1: 'cd <project-folder>',
     uninstall2: 'Remove-Item -Recurse -Force NetGuard-CLI'
   };
